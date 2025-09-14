@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>കൃഷി സഹായി | Krishi Sahayi - Sustainable Farming Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/lucide@0.263.1/dist/umd/lucide.js" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1 class="logo-text">🌱 <span data-i18n="appName">കൃഷി സഹായി</span></h1>
+                </div>
+                
+                <nav class="navigation">
+                    <button class="nav-btn active" data-section="home" data-i18n="nav.home">Home</button>
+                    <button class="nav-btn" data-section="learn" data-i18n="nav.learn">Learn</button>
+                    <button class="nav-btn" data-section="farm" data-i18n="nav.farm">Farm Game</button>
+                    <button class="nav-btn" data-section="profile" data-i18n="nav.profile">Profile</button>
+                    <button class="nav-btn" data-section="dashboard" data-i18n="nav.dashboard">Dashboard</button>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="user-stats">
+                        <span class="stat">
+                            <span class="stat-icon">🔥</span>
+                            <span id="currentStreak">15</span>
+                        </span>
+                        <span class="stat">
+                            <span class="stat-icon">⭐</span>
+                            <span id="userPoints">1,240</span>
+                        </span>
+                    </div>
+                    <button class="language-toggle" id="languageToggle">
+                        <span class="current-lang">EN</span>
+                        <span class="toggle-arrow">↔</span>
+                        <span class="alt-lang">ML</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="hero-title" data-i18n="hero.title">Transform Kerala Agriculture Through Gamified Learning</h1>
+                        <p class="hero-subtitle" data-i18n="hero.subtitle">Join thousands of farmers learning sustainable practices while earning rewards and building thriving farms</p>
+                        <div class="hero-actions">
+                            <button class="btn btn--primary" data-section="learn" data-i18n="hero.startLearning">Start Learning</button>
+                            <button class="btn btn--outline" data-section="farm" data-i18n="hero.playGame">Play Farming Game</button>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-card">
+                                <div class="stat-number">5,200+</div>
+                                <div class="stat-label" data-i18n="hero.farmers">Active Farmers</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">85%</div>
+                                <div class="stat-label" data-i18n="hero.sustainability">Avg. Sustainability Score</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">12M</div>
+                                <div class="stat-label" data-i18n="hero.waterSaved">Liters Water Saved</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learn Section -->
+        <section id="learn" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="learn.title">Learning Modules</h2>
+                    <div class="progress-overview">
+                        <div class="progress-item">
+                            <span data-i18n="learn.completed">Completed:</span>
+                            <span id="modulesCompleted">3/6</span>
+                        </div>
+                        <div class="progress-item">
+                            <span data-i18n="learn.xp">XP:</span>
+                            <span id="userXP">2,150</span>
+                        </div>
+                        <div class="progress-item">
+                            <span data-i18n="learn.level">Level:</span>
+                            <span id="userLevel">8</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modules-grid" id="modulesGrid">
+                    <!-- Modules will be populated by JavaScript -->
+                </div>
+                
+                <!-- Module Detail Modal -->
+                <div id="moduleModal" class="modal hidden">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 id="modalTitle" class="modal-title"></h3>
+                            <button class="modal-close">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="lessonContent" class="lesson-content hidden">
+                                <div class="lesson-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="lessonProgress"></div>
+                                    </div>
+                                    <span class="progress-text" id="progressText">Lesson 1 of 3</span>
+                                </div>
+                                <div class="lesson-body" id="lessonBody"></div>
+                                <div class="lesson-actions">
+                                    <button class="btn btn--secondary" id="prevLesson" data-i18n="learn.previous">Previous</button>
+                                    <button class="btn btn--primary" id="nextLesson" data-i18n="learn.next">Next</button>
+                                </div>
+                            </div>
+                            
+                            <div id="quizContent" class="quiz-content hidden">
+                                <div class="quiz-header">
+                                    <h4 data-i18n="learn.quiz">Module Quiz</h4>
+                                    <div class="quiz-score">
+                                        <span data-i18n="learn.score">Score:</span>
+                                        <span id="quizScore">0/0</span>
+                                    </div>
+                                </div>
+                                <div class="quiz-question" id="quizQuestion">
+                                    <!-- Quiz questions will be populated here -->
+                                </div>
+                                <div class="quiz-actions">
+                                    <button class="btn btn--primary" id="submitQuiz" data-i18n="learn.submit">Submit Answer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Farm Game Section -->
+        <section id="farm" class="section">
+            <div class="container">
+                <div class="game-header">
+                    <h2 class="section-title" data-i18n="farm.title">Idle Farm Game</h2>
+                    <div class="game-stats">
+                        <div class="stat-item">
+                            <span class="stat-icon">🪙</span>
+                            <span id="coinCount">45,600</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">💎</span>
+                            <span id="shardCount">12</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">⚡</span>
+                            <span id="passiveIncome">245/sec</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-content">
+                    <div class="game-main">
+                        <div class="click-area">
+                            <button class="click-target" id="clickTarget">
+                                <div class="click-visual">🥥</div>
+                                <div class="click-text" data-i18n="farm.clickToFarm">Click to Farm!</div>
+                            </button>
+                            <div class="click-effects" id="clickEffects"></div>
+                        </div>
+                        
+                        <div class="daily-rewards">
+                            <h3 data-i18n="farm.dailyRewards">Daily Login Rewards</h3>
+                            <div class="rewards-calendar" id="rewardsCalendar">
+                                <!-- Daily rewards will be populated here -->
+                            </div>
+                            <button class="btn btn--primary" id="claimReward" data-i18n="farm.claimReward">Claim Today's Reward</button>
+                        </div>
+                    </div>
+                    
+                    <div class="upgrades-panel">
+                        <h3 data-i18n="farm.upgrades">Upgrades</h3>
+                        <div class="upgrades-list" id="upgradesList">
+                            <!-- Upgrades will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="section">
+            <div class="container">
+                <div class="profile-header">
+                    <div class="profile-avatar">👨‍🌾</div>
+                    <div class="profile-info">
+                        <h2 class="profile-name" id="profileName">Demo Farmer</h2>
+                        <p class="profile-location" id="profileLocation">Alappuzha, Kerala</p>
+                        <p class="profile-join-date">
+                            <span data-i18n="profile.memberSince">Member since:</span>
+                            <span id="joinDate">January 15, 2024</span>
+                        </p>
+                    </div>
+                    <button class="btn btn--outline" data-i18n="profile.shareProfile">Share Profile</button>
+                </div>
+                
+                <div class="profile-content">
+                    <div class="profile-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">⭐</div>
+                            <div class="stat-value" id="profilePoints">1,240</div>
+                            <div class="stat-label" data-i18n="profile.totalPoints">Total Points</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🌱</div>
+                            <div class="stat-value" id="sustainabilityScoreProfile">76</div>
+                            <div class="stat-label" data-i18n="profile.sustainabilityScore">Sustainability Score</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🔥</div>
+                            <div class="stat-value" id="longestStreak">23</div>
+                            <div class="stat-label" data-i18n="profile.longestStreak">Longest Streak</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📚</div>
+                            <div class="stat-value" id="profileModules">3</div>
+                            <div class="stat-label" data-i18n="profile.modulesCompleted">Modules Completed</div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-sections">
+                        <div class="achievements-preview">
+                            <h3 data-i18n="profile.recentAchievements">Recent Achievements</h3>
+                            <div class="achievements-grid" id="profileAchievements">
+                                <!-- Achievements will be populated here -->
+                            </div>
+                            <button class="btn btn--outline" data-section="achievements" data-i18n="profile.viewAll">View All Achievements</button>
+                        </div>
+                        
+                        <div class="farm-data-preview">
+                            <h3 data-i18n="profile.farmData">Farm Data</h3>
+                            <div class="farm-summary" id="farmSummary">
+                                <p><strong data-i18n="profile.crops">Crops:</strong> <span id="cropsList">Rice, Coconut, Banana, Pepper</span></p>
+                                <p><strong data-i18n="profile.farmSize">Farm Size:</strong> <span id="farmSize">2.5 hectares</span></p>
+                                <p><strong data-i18n="profile.soilType">Soil Type:</strong> <span id="soilType">Loamy</span></p>
+                            </div>
+                            <button class="btn btn--outline" data-section="myFarm" data-i18n="profile.updateFarmData">Update Farm Data</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Farm Section -->
+        <section id="myFarm" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="myFarm.title">My Farm Management</h2>
+                    <div class="sustainability-indicator">
+                        <div class="score-display">
+                            <span class="score-label" data-i18n="myFarm.currentScore">Current Sustainability Score:</span>
+                            <span class="score-value" id="currentSustainabilityScore">76</span>
+                        </div>
+                        <div class="score-bar">
+                            <div class="score-fill" id="scoreFill" style="width: 76%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="farm-form" id="farmForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" data-i18n="myFarm.crops">Select Your Crops:</label>
+                            <div class="checkbox-group" id="cropsGroup">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="Rice" checked>
+                                    <span data-i18n="crops.rice">Rice</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="Coconut" checked>
+                                    <span data-i18n="crops.coconut">Coconut</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="Banana" checked>
+                                    <span data-i18n="crops.banana">Banana</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="Pepper" checked>
+                                    <span data-i18n="crops.pepper">Pepper</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="Cardamom">
+                                    <span data-i18n="crops.cardamom">Cardamom</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="Rubber">
+                                    <span data-i18n="crops.rubber">Rubber</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="farmArea" data-i18n="myFarm.area">Farm Area (Hectares):</label>
+                            <input type="number" id="farmArea" class="form-control" value="2.5" step="0.1" min="0.1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="soilTypeSelect" data-i18n="myFarm.soilType">Soil Type:</label>
+                            <select id="soilTypeSelect" class="form-control">
+                                <option value="sandy" data-i18n="soil.sandy">Sandy</option>
+                                <option value="loamy" selected data-i18n="soil.loamy">Loamy</option>
+                                <option value="clay" data-i18n="soil.clay">Clay</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="waterUsage" data-i18n="myFarm.waterUsage">Weekly Water Usage (Liters):</label>
+                            <input type="number" id="waterUsage" class="form-control" value="8500" min="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" data-i18n="myFarm.fertilizers">Fertilizer Usage (kg/year):</label>
+                            <div class="fertilizer-inputs">
+                                <div class="input-group">
+                                    <label for="organicFertilizer" data-i18n="fertilizer.organic">Organic:</label>
+                                    <input type="number" id="organicFertilizer" class="form-control" value="200" min="0">
+                                </div>
+                                <div class="input-group">
+                                    <label for="chemicalFertilizer" data-i18n="fertilizer.chemical">Chemical:</label>
+                                    <input type="number" id="chemicalFertilizer" class="form-control" value="50" min="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn--primary" data-i18n="myFarm.updateScore">Update Sustainability Score</button>
+                </form>
+                
+                <div class="recommendations" id="recommendations">
+                    <h3 data-i18n="myFarm.recommendations">Recommendations for Improvement:</h3>
+                    <ul id="recommendationsList">
+                        <li data-i18n="myFarm.rec1">Increase organic fertilizer ratio to improve soil health</li>
+                        <li data-i18n="myFarm.rec2">Consider implementing drip irrigation to reduce water usage</li>
+                        <li data-i18n="myFarm.rec3">Add more crop variety to boost biodiversity score</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="achievements.title">Achievements & Badges</h2>
+                    <div class="achievements-filter">
+                        <button class="filter-btn active" data-filter="all" data-i18n="achievements.all">All</button>
+                        <button class="filter-btn" data-filter="learning" data-i18n="achievements.learning">Learning</button>
+                        <button class="filter-btn" data-filter="farming" data-i18n="achievements.farming">Farming</button>
+                        <button class="filter-btn" data-filter="sustainability" data-i18n="achievements.sustainability">Sustainability</button>
+                    </div>
+                </div>
+                
+                <div class="achievements-grid" id="achievementsGrid">
+                    <!-- Achievements will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Leaderboard Section -->
+        <section id="leaderboard" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="leaderboard.title">Leaderboard</h2>
+                    <div class="leaderboard-tabs">
+                        <button class="tab-btn active" data-tab="points" data-i18n="leaderboard.points">Points</button>
+                        <button class="tab-btn" data-tab="sustainability" data-i18n="leaderboard.sustainability">Sustainability</button>
+                        <button class="tab-btn" data-tab="modules" data-i18n="leaderboard.modules">Modules</button>
+                    </div>
+                </div>
+                
+                <div class="leaderboard-content" id="leaderboardContent">
+                    <!-- Leaderboard entries will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="dashboard.title">Dashboard & Analytics</h2>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3 data-i18n="dashboard.sustainabilityTrend">Sustainability Score Trend</h3>
+                        <div class="chart-container" style="position: relative; height: 300px;">
+                            <canvas id="sustainabilityChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3 data-i18n="dashboard.learningProgress">Learning Progress</h3>
+                        <div class="chart-container" style="position: relative; height: 300px;">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3 data-i18n="dashboard.pointsEarned">Points Earned Over Time</h3>
+                        <div class="chart-container" style="position: relative; height: 300px;">
+                            <canvas id="pointsChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3 data-i18n="dashboard.overview">Quick Overview</h3>
+                        <div class="overview-stats">
+                            <div class="overview-item">
+                                <span class="overview-label" data-i18n="dashboard.totalSessions">Total Learning Sessions:</span>
+                                <span class="overview-value">47</span>
+                            </div>
+                            <div class="overview-item">
+                                <span class="overview-label" data-i18n="dashboard.averageScore">Average Quiz Score:</span>
+                                <span class="overview-value">87%</span>
+                            </div>
+                            <div class="overview-item">
+                                <span class="overview-label" data-i18n="dashboard.farmingGains">Farming Game Earnings:</span>
+                                <span class="overview-value">45.6K coins</span>
+                            </div>
+                            <div class="overview-item">
+                                <span class="overview-label" data-i18n="dashboard.knowledgeShards">Knowledge Shards Collected:</span>
+                                <span class="overview-value">127</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
