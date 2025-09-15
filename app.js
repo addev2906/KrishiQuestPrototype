@@ -26,7 +26,7 @@ const AppState = {
 // Internationalization Data
 const translations = {
     en: {
-        appName: "Krishi Sahayi",
+        appName: "KrishiQuest",
         nav: {
             home: "Home",
             learn: "Learn",
@@ -254,119 +254,154 @@ const translations = {
 // Sample Data (from provided JSON)
 const sampleData = {
     modules: [
-        {
-            moduleId: "mulching-101",
-            title: "Mulching for Soil Health",
-            titleMl: "മണ്ണിന്റെ ആരോഗ്യത്തിനായി ചവറ്",
-            summary: "How to apply mulch to banana & coconut groves to improve moisture retention",
-            summaryMl: "ബനാന, തെങ്ങ് തോപ്പുകളിൽ ചവറിടുന്ന രീതി",
-            lessons: [
-                {id:"l1",title:"Why mulch?",titleMl:"എന്തിന് ചവറ്?",type:"text",duration:120},
-                {id:"l2",title:"How to mulch",titleMl:"എങ്ങനെ ചവറിടാം",type:"image",duration:180},
-                {id:"l3",title:"Best materials",titleMl:"നല്ല വസ്തുക്കൾ",type:"video",duration:90}
-            ],
-            quiz: [
-                {q:"Mulch reduces evaporation by approx?",qMl:"ചവറ് ബാഷ്പീകരണം എത്ര കുറയ്ക്കുന്നു?",choices:["10%","25%","50%"],choicesMl:["10%","25%","50%"],answer:1},
-                {q:"Best mulch material for coconut?",qMl:"തെങ്ങിന് ഏറ്റവും നല്ല ചവറ്?",choices:["Coconut husk","Rice straw","Plastic"],choicesMl:["തെങ്ങിൻ പൊടി","നെല്ല് വൈക്കോൽ","പ്ലാസ്റ്റിക്"],answer:0}
-            ],
-            points: 50,
-            unlocked: true,
-            completed: true,
-            xpReward: 100
-        },
-        {
-            moduleId: "composting-basics",
-            title: "Composting Fundamentals",
-            titleMl: "കമ്പോസ്റ്റ് അടിസ്ഥാനങ്ങൾ",
-            summary: "Learn to create nutrient-rich compost from kitchen and farm waste",
-            summaryMl: "അടുക്കള, കൃഷി മാലിന്യങ്ങളിൽ നിന്ന് പോഷക കമ്പോസ്റ്റ് നിർമ്മാണം",
-            lessons: [
-                {id:"l1",title:"Carbon & Nitrogen balance",titleMl:"കാർബൺ-നൈട്രജൻ സന്തുലിതാവസ്ഥ",type:"text",duration:150},
-                {id:"l2",title:"Composting methods",titleMl:"കമ്പോസ്റ്റ് രീതികൾ",type:"image",duration:200}
-            ],
-            quiz: [
-                {q:"Ideal C:N ratio for compost?",qMl:"കമ്പോസ്റ്റിന് അനുയോജ്യമായ C:N അനുപാതം?",choices:["15:1","30:1","45:1"],choicesMl:["15:1","30:1","45:1"],answer:1}
-            ],
-            points: 60,
-            unlocked: true,
-            completed: true,
-            requiredModule: "mulching-101",
-            xpReward: 120
-        },
-        {
-            moduleId: "water-conservation",
-            title: "Water Conservation Techniques",
-            titleMl: "ജല സംരക്ഷണ രീതികൾ",
-            summary: "Drip irrigation, rainwater harvesting, and efficient water use",
-            summaryMl: "തുള്ളി നീർവളം, മഴവെള്ള സംരക്ഷണം, കാര്യക്ഷമമായ ജല ഉപയോഗം",
-            lessons: [
-                {id:"l1",title:"Drip irrigation setup",titleMl:"തുള്ളി നീർവളം സ്ഥാപനം",type:"video",duration:180},
-                {id:"l2",title:"Rainwater harvesting",titleMl:"മഴവെള്ള സംഭരണം",type:"text",duration:120}
-            ],
-            quiz: [
-                {q:"Drip irrigation saves water by?",qMl:"തുള്ളി നീർവളം എത്ര ജലം ലാഭിക്കുന്നു?",choices:["30%","50%","70%"],choicesMl:["30%","50%","70%"],answer:2}
-            ],
-            points: 70,
-            unlocked: true,
-            completed: false,
-            requiredModule: "composting-basics",
-            xpReward: 140
-        },
-        {
-            moduleId: "bio-pesticides",
-            title: "Natural Pest Management",
-            titleMl: "പ്രകൃതിദത്ത കീടനിയന്ത്രണം",
-            summary: "Organic pest control using neem, turmeric, and beneficial insects",
-            summaryMl: "വേപ്പ്, മഞ്ഞൾ, ഗുണകരമായ പ്രാണികൾ ഉപയോഗിച്ചുള്ള കീടനിയന്ത്രണം",
-            lessons: [
-                {id:"l1",title:"Neem-based solutions",titleMl:"വേപ്പ് അടിസ്ഥാനമാക്കിയ പരിഹാരങ്ങൾ",type:"text",duration:140}
-            ],
-            quiz: [
-                {q:"Neem oil concentration for pests?",qMl:"കീടങ്ങൾക്ക് വേപ്പെണ്ണ സാന്ദ്രത?",choices:["1%","3%","5%"],choicesMl:["1%","3%","5%"],answer:1}
-            ],
-            points: 80,
-            unlocked: false,
-            completed: false,
-            requiredModule: "water-conservation",
-            xpReward: 160
-        },
-        {
-            moduleId: "crop-rotation",
-            title: "Crop Rotation Strategies",
-            titleMl: "വിള ഭ്രമണ തന്ത്രങ്ങൾ",
-            summary: "Optimizing soil health through strategic crop rotation",
-            summaryMl: "തന്ത്രപരമായ വിള ഭ്രമണത്തിലൂടെ മണ്ണിന്റെ ആരോഗ്യ്യം മെച്ചപ്പെടുത്തൽ",
-            lessons: [
-                {id:"l1",title:"3-year rotation plans",titleMl:"3 വർഷത്തെ ഭ്രമണ പദ്ധതികൾ",type:"image",duration:160}
-            ],
-            quiz: [
-                {q:"Best rotation after rice?",qMl:"നെല്ലിന് ശേഷം ഏറ്റവും നല്ല വിള?",choices:["Pulses","Corn","Banana"],choicesMl:["പയർവർഗ്ഗങ്ങൾ","ചോളം","വാഴ"],answer:0}
-            ],
-            points: 90,
-            unlocked: false,
-            completed: false,
-            requiredModule: "bio-pesticides",
-            xpReward: 180
-        },
-        {
-            moduleId: "organic-certification",
-            title: "Organic Certification Process",
-            titleMl: "ജൈവിക സർട്ടിഫിക്കേഷൻ പ്രക്രിയ",
-            summary: "Navigate Kerala's organic certification requirements and benefits",
-            summaryMl: "കേരളത്തിലെ ജൈവിക സർട്ടിഫിക്കേഷൻ ആവശ്യകതകളും ഗുണങ്ങളും",
-            lessons: [
-                {id:"l1",title:"Documentation needed",titleMl:"ആവശ്യമായ രേഖകൾ",type:"text",duration:200}
-            ],
-            quiz: [
-                {q:"Minimum period for organic certification?",qMl:"ജൈവിക സർട്ടിഫിക്കേഷന് ഏറ്റവും കുറഞ്ഞ സമയം?",choices:["1 year","2 years","3 years"],choicesMl:["1 വർഷം","2 വർഷം","3 വർഷം"],answer:2}
-            ],
-            points: 100,
-            unlocked: false,
-            completed: false,
-            requiredModule: "crop-rotation",
-            xpReward: 200
-        }
-    ],
+    {
+        moduleId: "mulching-101",
+        title: "Mulching for Soil Health",
+        titleMl: "മണ്ണിന്റെ ആരോഗ്യത്തിനായി ചവറ്",
+        summary: "How to apply mulch to banana & coconut groves to improve moisture retention",
+        summaryMl: "ബനാന, തെങ്ങ് തോപ്പുകളിൽ ചവറിടുന്ന രീതി",
+        content: "Mulching involves covering the soil with organic matter like leaves, straw, or husk. It reduces evaporation, improves soil fertility, suppresses weeds, and maintains soil temperature. In banana and coconut groves, mulching helps conserve moisture and enhance root growth.",
+        lessons: [
+            {id:"l1",title:"Why mulch?",titleMl:"എന്തിന് ചവറ്?",type:"text",duration:120},
+            {id:"l2",title:"How to mulch",titleMl:"എങ്ങനെ ചവറിടാം",type:"image",duration:180},
+            {id:"l3",title:"Best materials",titleMl:"നല്ല വസ്തുക്കൾ",type:"video",duration:90}
+        ],
+        quiz: [
+            {q:"Mulch reduces evaporation by approx?",qMl:"ചവറ് ബാഷ്പീകരണം എത്ര കുറയ്ക്കുന്നു?",choices:["10%","25%","50%"],choicesMl:["10%","25%","50%"],answer:1},
+            {q:"Best mulch material for coconut?",qMl:"തെങ്ങിന് ഏറ്റവും നല്ല ചവറ്?",choices:["Coconut husk","Rice straw","Plastic"],choicesMl:["തെങ്ങിൻ പൊടി","നെല്ല് വൈക്കോൽ","പ്ലാസ്റ്റിക്"],answer:0},
+            {q:"Mulching improves?",qMl:"ചവറിടൽ മെച്ചപ്പെടുത്തുന്നത്?",choices:["Soil fertility","Waterlogging","Soil erosion"],choicesMl:["മണ്ണിന്റെ ഉർവരാശക്തി","ജല തടസം","മണ്ണൊലിപ്പ്"],answer:0},
+            {q:"Which crop benefits most from mulching?",qMl:"ഏത് വിളക്ക് ചവറിടൽ ഏറ്റവും സഹായകരം?",choices:["Banana","Coconut","Both"],choicesMl:["വാഴ","തേങ്ങ","രണ്ടും"],answer:2},
+            {q:"Mulch thickness should be?",qMl:"ചവറിന്റെ കനം എത്രയാകണം?",choices:["1-2 cm","5-10 cm","20 cm"],choicesMl:["1-2 സെ.മീ.","5-10 സെ.മീ.","20 സെ.മീ."],answer:1}
+        ],
+        videoLink : '<iframe width="100%" height="315" src="https://www.youtube.com/embed/UlGdc1o3510?si=eApeMycEkLRCSFgm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
+        imageLink: "/images/mulching.jpg",
+        points: 50,
+        unlocked: true,
+        completed: true,
+        xpReward: 100
+    },
+    {
+        moduleId: "composting-basics",
+        title: "Composting Fundamentals",
+        titleMl: "കമ്പോസ്റ്റ് അടിസ്ഥാനങ്ങൾ",
+        summary: "Learn to create nutrient-rich compost from kitchen and farm waste",
+        summaryMl: "അടുക്കള, കൃഷി മാലിന്യങ്ങളിൽ നിന്ന് പോഷക കമ്പോസ്റ്റ് നിർമ്മാണം",
+        content: "Composting is the process of converting organic waste like leaves, food scraps, and farm residues into nutrient-rich manure. It improves soil structure, adds essential nutrients, and reduces waste. A balanced carbon-to-nitrogen ratio is key to effective composting.",
+        lessons: [
+            {id:"l1",title:"Carbon & Nitrogen balance",titleMl:"കാർബൺ-നൈട്രജൻ സന്തുലിതാവസ്ഥ",type:"text",duration:150},
+            {id:"l2",title:"Composting methods",titleMl:"കമ്പോസ്റ്റ് രീതികൾ",type:"image",duration:200}
+        ],
+        imageLink: "/images/composting.webp",
+        quiz: [
+            {q:"Ideal C:N ratio for compost?",qMl:"കമ്പോസ്റ്റിന് അനുയോജ്യമായ C:N അനുപാതം?",choices:["15:1","30:1","45:1"],choicesMl:["15:1","30:1","45:1"],answer:1},
+            {q:"Which waste is rich in nitrogen?",qMl:"ഏത് മാലിന്യം നൈട്രജൻ ധാരാളമാണ്?",choices:["Dry leaves","Fruit peels","Sawdust"],choicesMl:["ഉണങ്ങിയ ഇലകൾ","പഴത്തൊലി","ചിപ്പി പൊടി"],answer:1},
+            {q:"What should not go in compost?",qMl:"ഏത് കമ്പോസ്റ്റിൽ ഇടരുത്?",choices:["Vegetable scraps","Plastic","Cow dung"],choicesMl:["പച്ചക്കറി അവശിഷ്ടങ്ങൾ","പ്ലാസ്റ്റിക്","പശുവിന്റെ ചാണകം"],answer:1},
+            {q:"Compost helps improve?",qMl:"കമ്പോസ്റ്റ് മെച്ചപ്പെടുത്തുന്നത്?",choices:["Soil nutrients","Soil erosion","Plastic recycling"],choicesMl:["മണ്ണിലെ പോഷകങ്ങൾ","മണ്ണൊലിപ്പ്","പ്ലാസ്റ്റിക് റീസൈക്ലിംഗ്"],answer:0},
+            {q:"Which method is fastest?",qMl:"ഏത് രീതി വേഗത്തിലും?",choices:["Vermicomposting","Heap method","Trench method"],choicesMl:["വർമികോംപോസ്റ്റ്","കൂമ്പാര രീതി","കുഴി രീതി"],answer:0}
+        ],
+        points: 60,
+        unlocked: true,
+        completed: true,
+        requiredModule: "mulching-101",
+        xpReward: 120
+    },
+    {
+        moduleId: "water-conservation",
+        title: "Water Conservation Techniques",
+        titleMl: "ജല സംരക്ഷണ രീതികൾ",
+        summary: "Drip irrigation, rainwater harvesting, and efficient water use",
+        summaryMl: "തുള്ളി നീർവളം, മഴവെള്ള സംരക്ഷണം, കാര്യക്ഷമമായ ജല ഉപയോഗം",
+        content: "Water conservation includes techniques like drip irrigation and rainwater harvesting. These methods save water, increase crop yield, and reduce wastage. Drip irrigation delivers water directly to the roots, while rainwater harvesting collects and stores water for later use.",
+        lessons: [
+            {id:"l1",title:"Drip irrigation setup",titleMl:"തുള്ളി നീർവളം സ്ഥാപനം",type:"video",duration:180},
+            {id:"l2",title:"Rainwater harvesting",titleMl:"മഴവെള്ള സംഭരണം",type:"text",duration:120}
+        ],
+        quiz: [
+            {q:"Drip irrigation saves water by?",qMl:"തുള്ളി നീർവളം എത്ര ജലം ലാഭിക്കുന്നു?",choices:["30%","50%","70%"],choicesMl:["30%","50%","70%"],answer:2},
+            {q:"Best time for irrigation?",qMl:"നീരേറ്റത്തിന് ഏറ്റവും നല്ല സമയം?",choices:["Afternoon","Morning/Evening","Night"],choicesMl:["ഉച്ചയ്ക്ക്","രാവിലെ/വൈകുന്നേരം","രാത്രി"],answer:1},
+            {q:"Rainwater harvesting stores?",qMl:"മഴവെള്ള സംഭരണം ഏത് വെള്ളം?",choices:["Groundwater","Surface water","Rainwater"],choicesMl:["ഭൂഗർഭജലം","മേൽജലം","മഴവെള്ളം"],answer:2},
+            {q:"Which technique avoids wastage?",qMl:"ഏത് രീതി ജല നാശം ഒഴിവാക്കുന്നു?",choices:["Flood irrigation","Drip irrigation","Canal irrigation"],choicesMl:["വെള്ളപ്പൊക്ക നീരേറ്റം","തുള്ളി നീരേറ്റം","കാലുവഴി"],answer:1},
+            {q:"Water conservation improves?",qMl:"ജല സംരക്ഷണം മെച്ചപ്പെടുത്തുന്നത്?",choices:["Crop yield","Soil erosion","Fertilizer wastage"],choicesMl:["വിളവെടുപ്പ്","മണ്ണൊലിപ്പ്","വള നാശം"],answer:0}
+        ],
+        points: 70,
+        videoLink : '<iframe width="100%" height="315" src="https://www.youtube.com/embed/gJmY3dzg3Gk?si=WheZc9jRlausf701" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
+        unlocked: true,
+        completed: false,
+        requiredModule: "composting-basics",
+        xpReward: 140
+    },
+    {
+        moduleId: "bio-pesticides",
+        title: "Natural Pest Management",
+        titleMl: "പ്രകൃതിദത്ത കീടനിയന്ത്രണം",
+        summary: "Organic pest control using neem, turmeric, and beneficial insects",
+        summaryMl: "വേപ്പ്, മഞ്ഞൾ, ഗുണകരമായ പ്രാണികൾ ഉപയോഗിച്ചുള്ള കീടനിയന്ത്രണം",
+        content: "Bio-pesticides are natural substances like neem oil, turmeric extracts, and beneficial insects that help control pests without harming the environment. They are eco-friendly alternatives to chemical pesticides and help maintain biodiversity in the farm ecosystem.",
+        lessons: [
+            {id:"l1",title:"Neem-based solutions",titleMl:"വേപ്പ് അടിസ്ഥാനമാക്കിയ പരിഹാരങ്ങൾ",type:"text",duration:140}
+        ],
+        quiz: [
+            {q:"Neem oil concentration for pests?",qMl:"കീടങ്ങൾക്ക് വേപ്പെണ്ണ സാന്ദ്രത?",choices:["1%","3%","5%"],choicesMl:["1%","3%","5%"],answer:1},
+            {q:"Which plant repels pests?",qMl:"ഏത് ചെടി കീടങ്ങളെ തടയുന്നു?",choices:["Neem","Mango","Coconut"],choicesMl:["വേപ്പ്","മാവ്","തേങ്ങ"],answer:0},
+            {q:"Turmeric prevents?",qMl:"മഞ്ഞൾ തടയുന്നത്?",choices:["Fungal diseases","Sunlight","Waterlogging"],choicesMl:["ഫംഗസ് രോഗങ്ങൾ","സൂര്യപ്രകാശം","ജല തടസം"],answer:0},
+            {q:"Beneficial insects include?",qMl:"ഗുണകരമായ കീടങ്ങൾ?",choices:["Ladybird beetle","Mosquito","Housefly"],choicesMl:["ചുവന്ന വീണ്ടു","കൊതുക്","ഈച്ച"],answer:0},
+            {q:"Biopesticides are?",qMl:"ജീവ കീടനാശിനികൾ?",choices:["Eco-friendly","Harmful","Synthetic"],choicesMl:["പരിസ്ഥിതി സൗഹൃദം","ഹാനികരം","കൃത്രിമം"],answer:0}
+        ],
+        points: 80,
+        unlocked: false,
+        completed: false,
+        requiredModule: "water-conservation",
+        xpReward: 160
+    },
+    {
+        moduleId: "crop-rotation",
+        title: "Crop Rotation Strategies",
+        titleMl: "വിള ഭ്രമണ തന്ത്രങ്ങൾ",
+        summary: "Optimizing soil health through strategic crop rotation",
+        summaryMl: "തന്ത്രപരമായ വിള ഭ്രമണത്തിലൂടെ മണ്ണിന്റെ ആരോഗ്യ്യം മെച്ചപ്പെടുത്തൽ",
+        content: "Crop rotation is the practice of growing different crops sequentially on the same land to improve soil fertility, reduce pests, and manage diseases. Legumes add nitrogen to the soil, while rotation prevents soil depletion and increases long-term yield.",
+        lessons: [
+            {id:"l1",title:"3-year rotation plans",titleMl:"3 വർഷത്തെ ഭ്രമണ പദ്ധതികൾ",type:"image",duration:160}
+        ],
+        quiz: [
+            {q:"Best rotation after rice?",qMl:"നെല്ലിന് ശേഷം ഏറ്റവും നല്ല വിള?",choices:["Pulses","Corn","Banana"],choicesMl:["പയർവർഗ്ഗങ്ങൾ","ചോളം","വാഴ"],answer:0},
+            {q:"Crop rotation prevents?",qMl:"വിളഭ്രമണം തടയുന്നത്?",choices:["Soil erosion","Pest buildup","Floods"],choicesMl:["മണ്ണൊലിപ്പ്","കീടസംഖ്യ","വെള്ളപ്പൊക്കം"],answer:1},
+            {q:"Legumes improve soil by?",qMl:"പയർവർഗ്ഗങ്ങൾ മണ്ണ് മെച്ചപ്പെടുത്തുന്നത്?",choices:["Nitrogen fixation","Waterlogging","Soil erosion"],choicesMl:["നൈട്രജൻ ശേഖരണം","ജല തടസം","മണ്ണൊലിപ്പ്"],answer:0},
+            {q:"How often should crops be rotated?",qMl:"എത്ര വർഷത്തിൽ വിളഭ്രമണം വേണം?",choices:["Every year","Every 3 years","Never"],choicesMl:["ഓരോ വർഷവും","ഓരോ 3 വർഷവും","ഒരിക്കലും വേണ്ട"],answer:1},
+            {q:"Rotation increases?",qMl:"വിളഭ്രമണം വർദ്ധിപ്പിക്കുന്നത്?",choices:["Yield","Soil erosion","Weeds"],choicesMl:["വിളവെടുപ്പ്","മണ്ണൊലിപ്പ്","പുല്ലുകൾ"],answer:0}
+        ],
+        points: 90,
+        unlocked: false,
+        completed: false,
+        requiredModule: "bio-pesticides",
+        xpReward: 180
+    },
+    {
+        moduleId: "organic-certification",
+        title: "Organic Certification Process",
+        titleMl: "ജൈവിക സർട്ടിഫിക്കേഷൻ പ്രക്രിയ",
+        summary: "Navigate Kerala's organic certification requirements and benefits",
+        summaryMl: "കേരളത്തിലെ ജൈവിക സർട്ടിഫിക്കേഷൻ ആവശ്യകതകളും ഗുണങ്ങളും",
+        content: "Organic certification verifies that a farm follows organic practices without chemical fertilizers or pesticides. In Kerala, certification builds trust with consumers, provides access to premium markets, and ensures long-term soil and crop health.",
+        lessons: [
+            {id:"l1",title:"Documentation needed",titleMl:"ആവശ്യമായ രേഖകൾ",type:"text",duration:200}
+        ],
+        quiz: [
+            {q:"Minimum period for organic certification?",qMl:"ജൈവിക സർട്ടിഫിക്കേഷന് ഏറ്റവും കുറഞ്ഞ സമയം?",choices:["1 year","2 years","3 years"],choicesMl:["1 വർഷം","2 വർഷം","3 വർഷം"],answer:2},
+            {q:"Certification ensures?",qMl:"സർട്ടിഫിക്കേഷൻ ഉറപ്പാക്കുന്നത്?",choices:["Organic practices","Chemical use","Plastic farming"],choicesMl:["ജൈവ രീതികൾ","രാസവള പ്രയോഗം","പ്ലാസ്റ്റിക് കൃഷി"],answer:0},
+            {q:"Which body provides certification in Kerala?",qMl:"കേരളത്തിൽ സർട്ടിഫിക്കേഷൻ നൽകുന്നത്?",choices:["Indocert","FAO","WHO"],choicesMl:["ഇൻഡോസർട്ട്","എഫ്എഒ","ഡബ്ല്യുഎച്ച്ഒ"],answer:0},
+            {q:"Certification helps farmers by?",qMl:"സർട്ടിഫിക്കേഷൻ കർഷകർക്ക് സഹായിക്കുന്നത്?",choices:["Higher prices","Lower yield","More pests"],choicesMl:["ഉയർന്ന വില","കുറഞ്ഞ വിളവെടുപ്പ്","കൂടുതൽ കീടങ്ങൾ"],answer:0},
+            {q:"Which crops can be certified?",qMl:"ഏത് വിളകൾക്ക് സർട്ടിഫിക്കറ്റ് ലഭിക്കും?",choices:["Only rice","Only fruits","Any crop"],choicesMl:["നെല്ല് മാത്രം","പഴങ്ങൾ മാത്രം","ഏതു വിളക്കും"],answer:2}
+        ],
+        points: 100,
+        unlocked: false,
+        completed: false,
+        requiredModule: "crop-rotation",
+        xpReward: 200
+    }
+]
+
+,
     achievements: [
         {
             achievementId: "first-steps",
@@ -844,7 +879,7 @@ function createModuleCard(module, index) {
         <div class="module-actions">
             ${module.unlocked ? 
                 (module.completed ? 
-                    `<button class="btn btn--outline" onclick="openModule('${module.moduleId}')" data-i18n="learn.retakeQuiz">Retake Quiz</button>` :
+                    `<button class="btn btn--outline" onclick="openModule('${module.moduleId}')" data-i18n="learn.retakeQuiz">Revisit Lesson</button>` :
                     `<button class="btn btn--primary" onclick="openModule('${module.moduleId}')" data-i18n="learn.startModule">Start Module</button>`
                 ) :
                 `<button class="btn btn--secondary" disabled>🔒 Locked</button>`
@@ -878,8 +913,9 @@ function openModule(moduleId) {
     
     title.textContent = lang === 'ml' ? (module.titleMl || module.title) : module.title;
     
-    if (module.completed || AppState.currentLesson >= module.lessons.length) {
-        showQuiz();
+    if (module.completed) {
+        showLesson();
+        // showQuiz();
     } else {
         showLesson();
     }
@@ -894,7 +930,7 @@ function showLesson() {
     lessonContent.classList.remove('hidden');
     quizContent.classList.add('hidden');
     
-    renderCurrentLesson();
+    renderCurrentLesson(AppState.currentModule);
 }
 
 function showQuiz() {
@@ -907,9 +943,11 @@ function showQuiz() {
     renderQuiz();
 }
 
-function renderCurrentLesson() {
+function renderCurrentLesson(presentModule) {
     if (!AppState.currentModule) return;
     
+    console.log(presentModule);
+
     const lesson = AppState.currentModule.lessons[AppState.currentLesson];
     const progressFill = document.getElementById('lessonProgress');
     const progressText = document.getElementById('progressText');
@@ -921,9 +959,12 @@ function renderCurrentLesson() {
     progressFill.style.width = `${progress}%`;
     progressText.textContent = `Lesson ${AppState.currentLesson + 1} of ${AppState.currentModule.lessons.length}`;
     
+    
+    
+
     const lang = AppState.currentLanguage;
     const title = lang === 'ml' ? (lesson.titleMl || lesson.title) : lesson.title;
-    
+    console.log(sampleData.modules.videoLink);
     lessonBody.innerHTML = `
         <div class="lesson-header">
             <h4>${title}</h4>
@@ -931,14 +972,13 @@ function renderCurrentLesson() {
         </div>
         <div class="lesson-content-body">
             ${lesson.type === 'text' ? `
-                <p>This is a text-based lesson about ${title.toLowerCase()}. In a real implementation, this would contain detailed educational content about sustainable farming practices.</p>
-                <p>Key points would be covered with interactive elements, images, and practical examples specific to Kerala farming conditions.</p>
+                <p>${presentModule.content}</p>
             ` : lesson.type === 'image' ? `
                 <div class="lesson-image-placeholder">
                     <div style="background: #f0f0f0; padding: 2rem; text-align: center; border-radius: 8px; margin: 1rem 0;">
-                        <span style="font-size: 3rem;">📸</span>
-                        <p>Interactive image content for: ${title}</p>
-                        <p>Visual demonstrations and step-by-step guides would be shown here.</p>
+                        <span style="font-size: 3rem;"></span>
+                        <p>Image content for: ${title}</p>
+                        <p><img src="${presentModule.imageLink}" style="width: 100%; height: auto;" /></p>
                     </div>
                 </div>
             ` : `
@@ -946,7 +986,7 @@ function renderCurrentLesson() {
                     <div style="background: #f0f0f0; padding: 2rem; text-align: center; border-radius: 8px; margin: 1rem 0;">
                         <span style="font-size: 3rem;">🎥</span>
                         <p>Video content: ${title}</p>
-                        <p>Practical demonstration videos would be embedded here.</p>
+                        <p>${presentModule.videoLink}</p>
                     </div>
                 </div>
             `}
@@ -964,7 +1004,7 @@ function nextLesson() {
     if (AppState.currentLesson < AppState.currentModule.lessons.length - 1) {
         AppState.currentLesson++;
         AppState.currentModule.currentLesson = AppState.currentLesson;
-        renderCurrentLesson();
+        renderCurrentLesson(AppState.currentModule);
     } else {
         // All lessons completed, show quiz
         showQuiz();
@@ -975,7 +1015,7 @@ function prevLesson() {
     if (!AppState.currentModule || AppState.currentLesson <= 0) return;
     
     AppState.currentLesson--;
-    renderCurrentLesson();
+    renderCurrentLesson(AppState.currentModule);
 }
 
 function renderQuiz() {
@@ -1707,32 +1747,21 @@ function renderPointsChart() {
 // ==========================
 
 function saveUserData() {
-    saveToLocalStorage('krishiSahayi_user', AppState.currentUser);
-    saveToLocalStorage('krishiSahayi_modules', AppState.modules);
-    saveToLocalStorage('krishiSahayi_achievements', AppState.achievements);
+    saveToLocalStorage('krishiSahayi_user', sampleData.currentUser);
+    saveToLocalStorage('krishiSahayi_modules', sampleData.modules);
+    saveToLocalStorage('krishiSahayi_achievements', sampleData.achievements);
 }
 
 function saveGameData() {
-    saveToLocalStorage('krishiSahayi_idleGame', AppState.idleGame);
+    saveToLocalStorage('krishiSahayi_idleGame', sampleData.idleGame);
 }
 
 function loadUserData() {
-    const userData = loadFromLocalStorage('krishiSahayi_user', sampleData.userSample);
-    const modulesData = loadFromLocalStorage('krishiSahayi_modules', sampleData.modules);
-    const achievementsData = loadFromLocalStorage('krishiSahayi_achievements', sampleData.achievements);
-    const idleGameData = loadFromLocalStorage('krishiSahayi_idleGame', sampleData.idleGameData);
-    
-    AppState.currentUser = userData;
-    AppState.modules = modulesData;
-    AppState.achievements = achievementsData;
-    AppState.idleGame = idleGameData;
-    AppState.leaderboard = sampleData.leaderboard;
-    
-    // Initialize numeric values properly
-    AppState.idleGame.coins = parseInt(AppState.idleGame.coins) || 45600;
-    AppState.idleGame.clickValue = parseInt(AppState.idleGame.clickValue) || 12;
-    AppState.idleGame.passiveIncome = parseInt(AppState.idleGame.passiveIncome) || 245;
-    AppState.idleGame.knowledgeShards = parseInt(AppState.idleGame.knowledgeShards) || 12;
+    AppState.currentUser = JSON.parse(JSON.stringify(sampleData.userSample));
+    AppState.modules = JSON.parse(JSON.stringify(sampleData.modules));
+    AppState.achievements = JSON.parse(JSON.stringify(sampleData.achievements));
+    AppState.idleGame = JSON.parse(JSON.stringify(sampleData.idleGameData));
+    AppState.leaderboard = JSON.parse(JSON.stringify(sampleData.leaderboard));
 }
 
 function updateUserStats() {
@@ -1821,34 +1850,14 @@ function setupEventListeners() {
 }
 
 function initializeApp() {
-    console.log('Initializing Krishi Sahayi...');
-    
-    // Load saved language preference
-    AppState.currentLanguage = loadFromLocalStorage('krishiSahayi_language', 'en');
-    
-    // Load user data
+    AppState.currentLanguage = 'en'; // or your default
     loadUserData();
-    
-    // Set up event listeners
     setupEventListeners();
-    
-    // Update initial translations and stats
     updateTranslations();
     updateUserStats();
-    
-    // Set initial language toggle text
     updateLanguageToggle();
-    
-    // Calculate passive income for idle game
     calculatePassiveIncome();
-    
-    // Auto-save every 30 seconds
-    setInterval(() => {
-        saveUserData();
-        saveGameData();
-    }, 30000);
-    
-    console.log('Krishi Sahayi initialized successfully!');
+    // No auto-save, no localStorage
 }
 
 function toggleLanguage() {
