@@ -274,7 +274,7 @@ const sampleData = {
             {q:"Mulch thickness should be?",qMl:"ചവറിന്റെ കനം എത്രയാകണം?",choices:["1-2 cm","5-10 cm","20 cm"],choicesMl:["1-2 സെ.മീ.","5-10 സെ.മീ.","20 സെ.മീ."],answer:1}
         ],
         videoLink : '<iframe width="100%" height="315" src="https://www.youtube.com/embed/UlGdc1o3510?si=eApeMycEkLRCSFgm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
-        imageLink: "/images/mulching.jpg",
+        imageLink: "images/mulching.jpg",
         points: 50,
         unlocked: true,
         completed: true,
@@ -291,7 +291,7 @@ const sampleData = {
             {id:"l1",title:"Carbon & Nitrogen balance",titleMl:"കാർബൺ-നൈട്രജൻ സന്തുലിതാവസ്ഥ",type:"text",duration:150},
             {id:"l2",title:"Composting methods",titleMl:"കമ്പോസ്റ്റ് രീതികൾ",type:"image",duration:200}
         ],
-        imageLink: "/images/composting.webp",
+        imageLink: "images/composting.webp",
         quiz: [
             {q:"Ideal C:N ratio for compost?",qMl:"കമ്പോസ്റ്റിന് അനുയോജ്യമായ C:N അനുപാതം?",choices:["15:1","30:1","45:1"],choicesMl:["15:1","30:1","45:1"],answer:1},
             {q:"Which waste is rich in nitrogen?",qMl:"ഏത് മാലിന്യം നൈട്രജൻ ധാരാളമാണ്?",choices:["Dry leaves","Fruit peels","Sawdust"],choicesMl:["ഉണങ്ങിയ ഇലകൾ","പഴത്തൊലി","ചിപ്പി പൊടി"],answer:1},
